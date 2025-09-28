@@ -5,20 +5,20 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage("Build") {
             steps {
-                sh 'mvn clean deploy'
+                sh "mvn clean deploy"
             }
         }
 
-        stage('SonarQube Analysis') {
+        stage("SonarQube Analysis") {
             environment {
-                scannerHome = tool 'nishant-sonar-scanner'
+                scannerHome = tool "nishant-sonar-scanner"
             }
             steps {
-                withSonarQubeEnv('nishant-sonarq-server') {
+                withSonarQubeEnv("nishant-sonarq-server") {
 
-                    sh '${scannerHome}/bin/sonar-scanner
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
